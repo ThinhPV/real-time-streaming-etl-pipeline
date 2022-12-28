@@ -112,3 +112,14 @@ services:
       KAFKA_CLUSTERS_0_KAFKACONNECT_0_NAME: debezium-connect
       KAFKA_CLUSTERS_0_KAFKACONNECT_0_ADDRESS: http://debezium-connect:8083
       KAFKA_CLUSTERS_0_KSQLDBSERVER: http://primary-ksqldb-server:8088
+
+  sqlserver:
+    container_name: sqlserver
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+     - 1433:1433
+    environment:
+     - ACCEPT_EULA=Y
+     - MSSQL_PID=Standard
+     - SA_PASSWORD=Password!
+     - MSSQL_AGENT_ENABLED=true

@@ -4,25 +4,20 @@
     {
         "connector.class" : "io.debezium.connector.sqlserver.SqlServerConnector",
         "tasks.max" : "1",
-        "database.server.name" : "MSSQLSERVER01",
-        "database.hostname" : "10.10.15.***",
-        "database.port" : "49172",
-        "database.user" : "***",
-        "database.password" : "********",
+        "database.server.name" : "server1",
+        "database.hostname" : "sqlserver",
+        "database.port" : "1433",
+        "database.user" : "sa",
+        "database.password" : "Password!",
         "database.names" : "DataProviders",
-        "table.include.list": "dbo.frankfurt_daily_history",
-        "column.include.list": "dbo.Instrument.(Id|Isin|MarketId|Ticker),dbo.frankfurt_daily_history.*",
+        "table.include.list": "dbo.frankfurt_stock_exchange",
+        "column.include.list": "dbo.frankfurt_stock_exchange.*",
         "database.history.kafka.bootstrap.servers" : "broker:9092",
         "database.history.kafka.topic": "schema-changes.friday",
 
-        "transforms": "unwrap,reroute,removeString",
-
+        "transforms": "unwrap",
         "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
         "transforms.unwrap.add.fields": "source.table",
-
-        "transforms.reroute.type": "io.debezium.transforms.ByLogicalTableRouter",
-        "transforms.reroute.topic.regex": "(.*)_daily_history(.*)",
-        "transforms.reroute.topic.replacement": "daily",
 
         "key.converter": "io.confluent.connect.avro.AvroConverter",
         "key.converter.schema.registry.url": "http://schema-registry:8081",
