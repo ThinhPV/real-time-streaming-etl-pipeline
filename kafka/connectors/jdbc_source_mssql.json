@@ -8,6 +8,7 @@
         "connection.password": "123456",
         "topic.prefix": "mssql-01-",
         "table.whitelist" : "frankfurt_stock_exchange",
+        "numeric.mapping": "best_fit",
         "mode":"bulk",
         "poll.interval.ms" : 3600000
     }
